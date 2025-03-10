@@ -1,0 +1,1604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Quiz | quiz.a-web.online</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+    <script src="lib/chart.js"></script>
+  
+  
+  
+  <style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+      margin-bottom: 20px;
+
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+</style>
+  
+  
+  
+  
+      <style>
+    
+
+        h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+label {
+    font-size: 1.2rem;
+    font-weight: bolder;
+    color: #5e42a3;
+    margin-right: 10px;
+    /* font-size: 20px; */
+    /* font-weight: bold; */
+    /* margin-bottom: 10px; */
+    /* color: red; */
+    background-color: #efe6fb;
+    /* width: 190px; */
+    /* height: 36px; */
+    /* padding: 0px; */
+    /* line-height: 35px; */
+    /* border: 2px solid #ffd4d4; */
+    border-radius: 5px;
+    /* margin-left: 260px; */
+    padding: 1px;
+    box-shadow: -1px -2px 19px 0px rgb(0 0 0 / 20%);
+}
+
+      select, input {
+    padding: 10px;
+    border: 2px solid #d1d1d1;
+    border-radius: 5px;
+    font-size: 1.7rem;
+    color: #34495e;
+    background-color: #ededed;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+        select:hover, input:hover {
+            border-color: #2980b9;
+            background-color: #dfe6e9;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: #2980b9;
+            box-shadow: 0 0 8px rgba(52, 152, 219, 0.6);
+        }
+
+     /*   button {
+            padding: 12px 25px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        #questionSection {
+            display: none;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        #question {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        } */
+
+       /* .option {
+            margin: 10px;
+            padding: 15px 25px;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 1rem;
+            color: #34495e;
+            background-color: #ecf0f1;
+            transition: all 0.3s ease;
+        }
+
+        .option:hover {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        } */
+
+        .selected {
+            background-color: #bcace5;
+            color: white;
+            border-color: #27ae60;
+        }
+hadow: 0px 1px 8px 2px rgb(0 0 0 / 20%);
+        }
+
+        #resultSection {
+            display: none;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 800px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #800080;
+            color: white;
+        }
+
+        .correct {
+            background-color: rgb(212, 237, 218);
+            color: #0c0c0c;
+        }
+
+        .incorrect {
+            background-color: rgb(248, 215, 218);
+            color: #0c0c0c;
+        }
+		
+		
+		
+		
+		
+		
+		
+		
+		table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+     th, td {
+    border: 3px solid whitesmoke;
+    padding: 4px;
+    text-align: center;
+}
+        tr:hover {
+            background-color: hsl(360deg * Math.random(), 70%, 80%);
+        }
+		
+		
+		tr:hover {background-color: #D6EEEE;}
+		
+		
+		.well {
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: #f5f5f5;
+    /* border: 1px solid #e3e3e3; */
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
+    box-shadow: inset 0 1px 20px 0px rgb(0 0 0 / 5%);
+    background-color: #f5f1eb;
+}
+
+      ::-webkit-scrollbar-track
+{
+background-color: #ffffff;
+}
+::-webkit-scrollbar {
+    width: 13px;
+    height: 5px;
+    background-color: #f5f8fc;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 2px solid #1f1f24;
+    background-color: #878787;
+    background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+}
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+        .skipped {
+            background-color: rgb(255, 243, 205);
+            color: #0c0c0c;
+        }
+
+        #chartContainer {
+            width: 80%;
+            margin: 20px auto;
+        }
+
+
+		
+		
+		
+		
+		span#score {
+    font-size: 16px;
+    font-weight: bolder;
+}
+	span#totalQuestions {
+    font-size: 16px;
+    font-weight: bolder;
+}	
+		
+	span#attempts {
+    font-size: 16px;
+    font-weight: bolder;
+}	
+	span#error {
+	   font-size: 16px;
+    font-weight: bolder;
+}span#accuracy {
+   font-size: 16px;
+    font-weight: bolder;
+}span#incorrect {
+   font-size: 16px;
+    font-weight: bolder;
+}
+span#correct {
+   font-size: 16px;
+    font-weight: bolder;
+}
+span#skippedpp {
+   font-size: 16px;
+    font-weight: bolder;
+}	
+		
+		
+		.h2, h2 {
+    font-size: 22px;
+}
+		
+		
+       #timer {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #8d0080;
+    background-color: #e5ddfb;
+    width: 176px;
+    height: 36px;
+    /* padding: 0px; */
+    line-height: 35px;
+    border: 2px solid #a38ced;
+    border-radius: 20px;
+    /* margin-left: 260px; */
+    padding-left: 12px;
+}
+		
+		
+		.quiz-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgb(0 0 0 / 20%);
+    width: auto;
+    margin: auto;
+}
+
+
+div#options button{
+    display: block;
+    width: 15%;
+    padding: 10px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: inset 0px 1px 17px 3px rgb(0 0 0 / 20%);
+} 
+div#options button:hover {
+            background: #dcdcdd;
+        }
+		
+/* button#prev {
+    background: #6c757d;
+	width: 66px;
+    height: 36px;
+    color: white;
+	padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+} */
+
+button#prev {
+    background: #6c757d;
+    width: 84px;
+    height: 36px;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+    /* color: white; */
+    /* width: 68px; */
+    /* height: 32px; */
+    line-height: 1px;
+    /* padding-left: 12px; */
+    box-shadow: 0px 1px 8px 2px rgb(0 0 0 / 20%);
+    padding: 18px 2px;
+    border: none;
+    /* border-radius: 5px; */
+    /* cursor: pointer; */
+    /* font-size: 16px; */
+    /* transition: 0.3s; */
+}
+button#next {
+   background: #28a745;
+    color: white;
+
+    width: 84px;
+    height: 36px;
+    line-height: 1px;
+    margin-left: 20;
+    padding-left: 12px;
+    box-shadow: 0px 1px 8px 2px rgb(0 0 0 / 20%);
+	padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+button#submit {
+    background: #dc3545;
+    color: white;
+    width: 84px;
+    height: 32px;
+    line-height: 1px;
+   /* margin-left: 20; */
+    padding-left: 12px;
+    box-shadow: 0px 1px 8px 2px rgb(0 0 0 / 20%);
+    padding: 18px 2px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+
+ .options button {
+            display: block;
+            width: 25%;
+            padding: 10px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+			box-shadow: inset 0px 1px 17px 3px rgb(0 0 0 / 20%);
+        }
+        .options button.selected {
+            background: #28a745;
+            color: white;
+        }
+		.options button:hover {
+            background: #dcdcdd;
+        }
+
+
+
+
+button.start_quiz {
+    background: #800080;
+    color: white;
+    width: 89px;
+    height: 36px;
+    line-height: 1px;
+    margin-left: 20;
+    padding-left: 12px;
+    box-shadow: 0px 1px 8px 2px rgb(0 0 0 / 20%);
+    padding: 3px 4px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+    font-weight: 550;
+}
+input {
+    width: 100px;
+    height: 33px;
+    vertical-align: top;
+}
+
+select {
+    border: 1px solid #ccc;
+    vertical-align: top;
+    width: 141px;
+    text-align: left;
+    height: 39px;
+    background-color: #ecf0f1;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+  }
+
+
+option {
+  color:#800080;
+  width: 100px;
+  height: 20px;
+  text-decoration: underline;
+}
+
+
+.well_incorrect {
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: #ffb8a5;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
+}
+.alert-successskipped {
+    color: #3c763d;
+    background-color: #fff3cd;
+    border-color: #e5d49f;
+}
+.img-circle {
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+}
+.container-fluidp {
+    margin-left: 32px;
+    margin-right: 38px;
+    padding: 12px;
+}
+
+
+
+
+.navbar {
+    border-radius: 0px;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    font-family: inherit;
+    font-weight: bolder;
+    line-height: 1.1;
+    color: purple;
+}
+
+button.savequiz {
+    background: #28a745;
+    color: white;
+    width: 89px;
+    height: 36px;
+    line-height: 1px;
+    margin-left: 20;
+    padding-left: 12px;
+    box-shadow: 0px 1px 8px 2px rgb(0 0 0 / 20%);
+    padding: 6px 4px;
+    border: none;
+    border-radius: 21px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: 0.3s;
+    font-weight: 550;
+}
+
+
+.question-number {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+div#questionSection {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #108935;
+    background-color: #caf3d6;
+    width: 147px;
+    height: 36px;
+   padding: 0px; 
+    line-height: 33px;
+    border: 2px solid #8fd3a3;
+    border-radius: 20px;
+    margin-left: -12px;
+    padding-left: 16px;
+    box-shadow: 0px 1px 8px 2px rgb(0 0 0 / 20%);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*.quiz-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+} */
+
+.header-row {
+    display: flex; /* Use Flexbox */
+    justify-content: space-between; /* Space between questionSection and timer */
+    align-items: center; /* Vertically center items */
+    margin-bottom: 20px; /* Add some spacing below the row */
+}  
+
+#questionSection {
+     /* flex: 1; Allow questionSection to take up available space */
+    margin-right: 10px; /* Add some spacing between questionSection and timer */
+}
+
+#timer {
+    margin: 0; /* Remove default margin for h3 */
+}
+
+#question {
+    margin-bottom: 20px;
+}
+
+#options {
+    margin-bottom: 20px;
+}
+
+.btn-prev, .btn-next, .btn-end {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-prev {
+    background-color: #f0ad4e;
+}
+
+.btn-next {
+    background-color: #5cb85c;
+}
+
+.btn-end {
+    background-color: #d9534f;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+				
+		button.startagain {
+    background: #800080;
+    color: white;
+    /* width: 89px; */
+    height: 36px;
+    line-height: 1px;
+    margin: 20px;
+    padding: 5px 11px;
+    box-shadow: 0px 1px 8px 2px rgb(0 0 0 / 20%);
+
+    border: none;
+    border-radius: 21px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+    font-weight: 550;
+}
+
+		button.viewsavedresults {
+    background: #10666e;
+    color: white;
+    /* width: 89px; */
+    height: 36px;
+    line-height: 1px;
+    margin: 20px;
+        padding: 6px 12px;
+    box-shadow: 0px 1px 8px 2px rgb(0 0 0 / 20%);
+   
+    border: none;
+    border-radius: 21px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: 0.3s;
+    font-weight: 550;
+}
+
+
+
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            select, input, button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            #questionSection, #resultSection {
+                padding: 15px;
+            }
+
+            .option {
+                width: 100%;
+                margin: 5px 0;
+            }
+        }
+		
+		
+		@media (max-width: 550px)
+		{
+		   div#options button {
+				
+				width: 45%;
+				
+			}
+		}
+    </style>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="#home" class="active">Quiz</a>
+ <!--  <a href="#page">News</a>
+  <a href="#contact">Contact</a>
+  <a href="#about">About</a> -->
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
+
+
+
+
+
+
+	
+<div class="container-fluidp">
+  <div class="row content">
+
+    <div class="col-sm-3 sidenav">
+      <h4>Select Option</h4>
+     
+	  
+	  
+	  
+	  <!--  <div class="setting">
+ <label for="pairSelect">Select Pair:</label>
+    <select id="pairSelect">
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select><br>
+    <label for="groupSelect">Select Group:</label>
+    <select id="groupSelect">
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select><br>
+    <label for="operationSelect">Select Operation:</label>
+    <select id="operationSelect">
+        <option value="add">Addition</option>
+        <option value="subtract">Subtraction</option>
+        <option value="multiply">Multiplication</option>
+        <option value="divide">Division</option>
+        <option value="add_subtract">Addition & Subtraction</option>
+        <option value="add_subtract_multiply">Addition, Subtraction & Multiplication</option>
+        <option value="all">All Operations</option>
+    </select><br>
+    <label for="questionCount">Number of Questions:</label>
+    <select id="questionCount">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+        <option value="25">25</option>
+        <option value="30">30</option>
+        <option value="35">35</option>
+        <option value="40">40</option>
+        <option value="50">50</option>
+        <option value="75">75</option>
+        <option value="90">90</option>
+        <option value="100">100</option>
+        <option value="125">125</option>
+        <option value="150">150</option>
+        <option value="175">175</option>
+        <option value="200">200</option>
+    </select><br>
+      <label for="timerInput">Timer (minutes):</label>
+    <input type="number" id="timerInput" min="1" value="5"><br>
+    <button class="start_quiz"onclick="startQuiz()">Start Quiz</button>
+
+</div> -->
+
+	  <div class="setting">
+	  
+	  
+	  
+	  
+  
+    <label for="pairSelect">Select digit Pair:</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <select id="pairSelect">
+	    <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+		   <option value="6">6</option>
+    </select><br>
+    <label for="groupSelect">Select word Group:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+    <select id="groupSelect">
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+		<option value="6">6</option>
+    </select><br>
+    <label for="operationSelect">Select Operation:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    
+    <select id="operationSelect">
+        <option value="add">Addition</option>
+        <option value="subtract">Subtraction</option>
+        <option value="multiply">Multiplication</option>
+        <option value="divide">Division</option>
+        <option value="add_subtract">Addition & Subtraction</option>
+        <option value="multiply_divide">Multiplication & Division</option>
+        <option value="add_subtract_multiply">Addition, Subtraction & Multiplication</option>
+        <option value="add_subtract_divide">Addition, Subtraction & Division</option>
+        <option value="all">All Operations</option>
+    </select><br>
+    <label for="questionCount">Number of Questions:</label>
+    <select id="questionCount">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+        <option value="25">25</option>
+        <option value="30">30</option>
+        <option value="35">35</option>
+        <option value="40">40</option>
+        <option value="50">50</option>
+        <option value="75">75</option>
+        <option value="90">90</option>
+        <option value="100">100</option>
+        <option value="125">125</option>
+        <option value="150">150</option>
+        <option value="175">175</option>
+        <option value="200">200</option>
+    </select><br>
+      <label for="timerInput">Timer (minutes):</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="number" id="timerInput" min="1" value="5"><br>
+    <button class="start_quiz" onclick="startQuiz()">Start Quiz</button>
+
+
+</div>
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+    </div>
+
+    <div class="col-sm-9">
+     <h2>Maths workout</h2>
+      <hr>
+     
+	  
+	    <h4><small>Increase calculation Speed</small></h4>
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+  	<!-- <div class="quiz-container">   
+
+    <div id="questionSection"  style="display: none;"></div>
+	  <h3 id="timer"  >Arithmetic Quiz</h3>
+        <h2 id="question"></h2>
+        <div id="options" ></div>
+        <button id="prev" class="btn-prev"  onclick="prevQuestion()" style="display: none;">Previous</button>
+        <button id="next" class="btn-next" onclick="nextQuestion()" style="display: none;" >Next</button>
+        <button id="submit" class="btn-end" onclick="showResults()" style="display: none;">Submit</button>
+       
+
+   	</div>     -->
+	
+
+	<div class="quiz-container">
+    <!-- Row for questionSection and timer -->
+    <div class="header-row">
+        <div id="questionSection" style="display: none;"></div>
+        <h3 id="timer">Arithmetic Quiz</h3>
+    </div>
+
+    <h2 id="question"></h2>
+    <div id="options"></div>
+    <button id="prev" class="btn-prev" onclick="prevQuestion()" style="display: none;">Previous</button>
+    <button id="next" class="btn-next" onclick="nextQuestion()" style="display: none;">Next</button>
+    <button id="submit" class="btn-end" onclick="showResults()" style="display: none;">Submit</button>
+</div> 
+	
+	
+	 <!--<div class="quiz-container">
+    <div class="question-numberp" id="questionSection">  <h3 id="timer">Time Left: 0s</h3>
+    <h2 id="question"></h2>
+    <div id="options"></div>
+    <button id="prev" onclick="prevQuestion()" style="display: none;">Previous</button>
+    <button id="next" onclick="nextQuestion()">Next</button>
+    <button id="submit" onclick="showResults()" style="display: none;">Submit</button>
+   </div> <!-- Add this line -- > 
+</div> -->
+	
+	
+	
+	
+	
+  <!-- <div id="resultSection" style="display: none;">
+        <h2>Results</h2>
+        <p>Score: <span id="score"></span> / <span id="totalQuestions"></span></p>
+        <p>Attempts: <span id="attempts"></span></p>
+        <p>Accuracy: <span id="accuracy"></span></p>
+		
+		<div style="display: flex; align-items: center;"> <span style="width: 15px; height: 15px; background-color: #dc3545; display: inline-block; margin-right: 5px;"></span> &nbsp;&nbsp;<span class="label label-danger">Incorrect:</span> &nbsp; &nbsp;&nbsp;
+							<p> <span id="correct">0</span></p>
+							
+							
+						</div>
+		
+	<br><p> <span id="incorrect">0</span></p>
+	
+	<span id="skippedpp">0</span></p>
+	
+		
+        <div id="chartContainer">
+            <canvas id="donutChart"></canvas>
+        </div>
+        <table>
+            <tr>
+                <th>Question</th>
+                <th>Correct Answer</th>
+                <th>Your Answer</th>
+            </tr>
+            <tbody id="resultTable"></tbody>
+        </table>
+    </div>  -->
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+   
+
+      
+ 
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="resultSection" style="display: none;">
+	<div class="container text-center">
+		<div class="row">
+			<div class="col-sm-3 well">
+				<div class="well">
+					<div class="result-box">
+						<h3>Results</h3>
+						<canvas id="donutChart"></canvas>
+					</div> 
+					
+					
+					<!-- <div id="chartContainer">
+							<canvas id="donutChart"></canvas>
+						</div>-->
+					
+					
+				</div>
+				<div class="well_incorrect"> <i class="fa fa-times" style="font-size:42px;color:red"></i>
+					<div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
+						<div style="display: flex; align-items: center;"> <span style="width: 15px; height: 15px; background-color: #dc3545; display: inline-block; margin-right: 5px;"></span> &nbsp;&nbsp;<span class="label label-danger">Incorrect</span> &nbsp; &nbsp;&nbsp;
+							<p> <span id="incorrect">0</span></p>
+						</div>
+					</div>
+				</div>
+				<div class="alert alert-success fade in">
+					<!-- <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a> -->
+		<img src="https://host-codes.github.io/mycode/image/Correct.webp" class="img-circle" height="55" width="55" alt="Avatar"><!--<i class="fa fa-check" style="font-size:42px;color:#5cb85c;"></i> -->
+					<div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
+						<div style="display: flex; align-items: center;"> <span style="width: 15px; height: 15px; background-color: #28a745; display: inline-block; margin-right: 5px;"></span> &nbsp;&nbsp; <span class="label label-success">Correct</span> &nbsp; &nbsp;&nbsp;
+							<p><span id="correct">0</span></p>
+						</div>
+					</div>
+				</div>
+				<div class="alert alert-successskipped fade in">
+					<!--  <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>-->
+		<img src="https://host-codes.github.io/mycode/image/skipped.webp" class="img-circle" height="55" width="55" alt="Avatar"> <!--<i class="fa fa-step-forward" style="font-size:42px;color:#fff3cd;"></i>-->
+					<div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
+						<div style="display: flex; align-items: center;"> <span style="width: 15px; height: 15px; background-color: #ffc107; display: inline-block; margin-right: 5px;"></span> &nbsp;&nbsp; <span class="label label-default">Skipped</span> &nbsp; &nbsp;&nbsp;
+							<p> <span id="skippedpp">0</span></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-7">
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="well">
+							<h4>Score</h4>
+							 <img src="https://host-codes.github.io/mycode/image/score.webp" class="img-circle" height="55" width="55" alt="Avatar"> 
+							<!--<p> <span id="score">0</span> / <b><span id="total"></span></b></p> -->
+							
+							<p><span id="score">0</span> / <b><span id="totalQuestions"></span></b></p>
+							</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="well">
+							<h4>Attempt</h4>
+							<!--<p><strong>Attempt:</strong></p> --><img src="https://host-codes.github.io/mycode/image/attempt.webp" class="img-circle" height="55" width="55" alt="Avatar">
+							<p> <span id="attempts">0</span></p>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="well">
+							<h4>Error %</h4>
+							<img src="https://host-codes.github.io/mycode/image/error.webp" class="img-circle" height="55" width="55" alt="Avatar">
+						
+							
+							<p> <span id ="error">0</span></p>
+							
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="well">
+							<h4>Accuracy:</h4> <img src="https://host-codes.github.io/mycode/image/accuracy.webp" class="img-circle" height="55" width="55" alt="Avatar">
+							<p> <span id="accuracy">0%</span></p>
+						</div>
+					</div>
+					
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="panel panel-default text-left">
+							<div class="panel-body">
+								<p contenteditable="true">Detail results</p>
+							
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="well"> </div>
+					</div>
+					<div class="col-sm-9">
+						<div class="well">
+							<p> Correct , Incorrect, Skipped.</p>
+							<div class="result-box">
+								<h3>Review</h3>
+								<!--<table id="review-table">
+									<tr>
+										<th>Question</th>
+										<th>Correct Answer</th>
+										<th>Your Answer</th>
+									</tr>
+								</table> -->
+								
+								
+								
+								     <!-- <table id="resultTable">
+									<tr>
+										<th>Question</th>
+										<th>Correct Answer</th>
+										<th>Your Answer</th>
+									</tr>
+								</table> -->
+								
+								    <table>
+											<tr>
+												<th>Question</th>
+												<th>Correct Answer</th>
+												<th>Your Answer</th>
+											</tr>
+											<tbody id="resultTable"></tbody>
+										</table>
+								
+							</div>
+						</div>
+					</div>
+					
+					
+       <button class="startagain" onclick="window.open('https://quiz.a-web.online', '_blank');">Start again</button>
+                  <button onclick="saveData()" class="savequiz">SaveQuiz</button>
+	<!--<button class="viewsavedresults" onclick="window.location.href = 'https://quiz.a-web.online/p/list.html';" >View Saved Results</button> -->
+	<button class="viewsavedresults" onclick="window.open('https://quiz.a-web.online/p/list.html', '_blank');">View Saved Results</button>				 
+				</div>
+			</div>
+			<div class="col-sm-2 well">
+				<!--<div class="thumbnail">
+					<p>Upcoming Events:</p> <img src="paris.jpg" alt="Paris" width="400" height="300">
+					<p><strong>Paris</strong></p>
+					<p>Fri. 27 November 2015</p>
+					<button class="btn btn-primary">Info</button>
+				</div> -->
+				<div class="well">
+					<p>fraction to percentage (quiz)</p>
+					<button class="btn btn-primary">start</button>
+				</div>
+				<!--<div class="well">
+					<p>ADS</p>
+				</div> -->
+			</div>
+		</div>
+	</div>
+</div>   <!--  End Tag id="result-section"   yhi hide krna hota hai -->
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<footer class="container-fluid">
+  <p>Footer Text</p>
+</footer> -->
+
+
+
+	
+  
+
+ <script>
+        let questions = [];
+        let userAnswers = [];
+        let correctAnswers = [];
+        let currentQuestionIndex = 0;
+        let attempts = 0;
+        let timeLeft = 0;
+        let timerInterval;
+        let donutChart;
+
+
+// Function to update the question number display
+function updateQuestionNumber() {
+    const questionNumberElement = document.getElementById("questionSection");
+    questionNumberElement.textContent = `Question ${currentQuestionIndex + 1}/${questions.length}`;
+}
+
+
+
+// Call updateQuestionNumber() when the quiz starts
+function startQuiz() {
+    // Reset attempts counter
+    attempts = 0;
+
+    const operation = document.getElementById("operationSelect").value;
+    const group = parseInt(document.getElementById("groupSelect").value);
+
+    // Show popup messages for specific operations and group sizes
+    if (operation === "add_subtract" && group < 3) {
+        alert("For Addition & Subtraction, please select word Group: 3, 4, 5, or 6.");
+        return;
+    }
+    if (operation === "multiply_divide" && group < 3) {
+        alert("For Multiplication & Division, please select word Group: 3, 4, 5, or 6.");
+        return;
+    }
+    if (operation === "add_subtract_multiply" && group < 4) {
+        alert("For Addition, Subtraction & Multiplication, please select word Group: 4, 5, or 6.");
+        return;
+    }
+    if (operation === "add_subtract_divide" && group < 4) {
+        alert("For Addition, Subtraction & Division, please select word Group: 4, 5, or 6.");
+        return;
+    }
+    if (operation === "all" && group < 5) {
+        alert("For All Operations, please select word Group: 5 or 6.");
+        return;
+    }
+
+    const questionCount = parseInt(document.getElementById("questionCount").value);
+    const timerMinutes = parseInt(document.getElementById("timerInput").value);
+    timeLeft = timerMinutes * 60; // Convert minutes to seconds
+    document.getElementById("questionSection").style.display = "block";
+    document.getElementById("resultSection").style.display = "none";
+    generateQuestions(questionCount);
+    startTimer();
+    updateQuestionNumber(); // Update the question number display when the quiz starts
+}
+
+
+
+  function startTimer() {
+            clearInterval(timerInterval);
+            document.getElementById("timer").textContent = `Time Left: ${timeLeft}s`;
+            timerInterval = setInterval(() => {
+                timeLeft--;
+               // document.getElementById("timer").textContent = `Time Left: ${timeLeft}s`;
+				
+				//---------------time in minute & second  2:45 -----------------
+				let minutes = Math.floor(timeLeft / 60);
+                let seconds = timeLeft % 60;
+                document.getElementById("timer").textContent = `Time Left: ${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+				//--------------------------------
+				
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    showResults();
+                }
+            }, 1000);
+        }
+		
+
+        function generateQuestions(questionCount) {
+            questions = [];
+            userAnswers = new Array(questionCount).fill(null);
+            correctAnswers = [];
+            let pair = parseInt(document.getElementById("pairSelect").value);
+            let group = parseInt(document.getElementById("groupSelect").value);
+            let operation = document.getElementById("operationSelect").value;
+
+            for (let i = 0; i < questionCount; i++) {
+                // Generate numbers with the specified number of digits (pair)
+                let nums = Array.from({ length: group }, () => {
+                    let min = Math.pow(10, pair - 1); // Minimum number with `pair` digits
+                    let max = Math.pow(10, pair) - 1; // Maximum number with `pair` digits
+                    return Math.floor(Math.random() * (max - min + 1)) + min;
+                });
+
+                let operators;
+                switch (operation) {
+                    case "add":
+                        operators = Array(group - 1).fill("+");
+                        break;
+                    case "subtract":
+                        operators = Array(group - 1).fill("-");
+                        break;
+                    case "multiply":
+                        operators = Array(group - 1).fill("×");
+                        break;
+                    case "divide":
+                        operators = Array(group - 1).fill("÷");
+                        break;
+                    case "add_subtract":
+                        operators = Array(group - 1).fill("+").map((_, index) => (index % 2 === 0 ? "+" : "-"));
+                        break;
+                    case "multiply_divide":
+                        operators = Array(group - 1).fill("×").map((_, index) => (index % 2 === 0 ? "×" : "÷"));
+                        break;
+                    case "add_subtract_multiply":
+                        operators = Array(group - 1).fill("+").map((_, index) => {
+                            if (index % 3 === 0) return "+";
+                            if (index % 3 === 1) return "-";
+                            return "×";
+                        });
+                        break;
+                    case "add_subtract_divide":
+                        operators = Array(group - 1).fill("+").map((_, index) => {
+                            if (index % 3 === 0) return "+";
+                            if (index % 3 === 1) return "-";
+                            return "÷";
+                        });
+                        break;
+                    case "all":
+                        operators = Array(group - 1).fill("+").map((_, index) => {
+                            if (index % 4 === 0) return "+";
+                            if (index % 4 === 1) return "-";
+                            if (index % 4 === 2) return "×";
+                            return "÷";
+                        });
+                        break;
+                }
+
+                // Randomize the order of operators
+                operators = shuffleArray(operators);
+
+                // Build the question string
+                let question = nums[0].toString();
+                for (let j = 1; j < nums.length; j++) {
+                    question += ` ${operators[j - 1]} ${nums[j]}`;
+                }
+                question += " = ?";
+
+                // Calculate the correct answer using BODMAS
+                let correctAnswer = evaluateExpression(nums, operators);
+
+                // Round the answer to 3 decimal places if it's a decimal
+                if (!Number.isInteger(correctAnswer)) {
+                    correctAnswer = parseFloat(correctAnswer.toFixed(3));
+                }
+
+                let options = new Set([correctAnswer]);
+                while (options.size < 5) {
+                    let randomOption = correctAnswer + Math.floor(Math.random() * 10) - 5;
+                    if (!Number.isInteger(randomOption)) {
+                        randomOption = parseFloat(randomOption.toFixed(3));
+                    }
+                    options.add(randomOption);
+                }
+
+                questions.push({
+                    question,
+                    options: [...options].sort(() => Math.random() - 0.5),
+                    correctAnswer
+                });
+            }
+            currentQuestionIndex = 0;
+            displayQuestion();
+        }
+		
+	 function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function evaluateExpression(nums, operators) {
+            // Combine numbers and operators into a single expression string
+            let expression = nums[0].toString();
+            for (let i = 1; i < nums.length; i++) {
+                // Replace "×" with "*" and "÷" with "/" for eval
+                let operator = operators[i - 1];
+                if (operator === "×") operator = "*";
+                if (operator === "÷") operator = "/";
+                expression += operator + nums[i].toString();
+            }
+
+            // Evaluate the expression using BODMAS rules
+            return eval(expression);
+        }
+
+   
+		 
+// Call this function whenever the question changes
+function displayQuestion() {
+    let q = questions[currentQuestionIndex];
+    document.getElementById("question").textContent = q.question;
+    let optionsContainer = document.getElementById("options");
+    optionsContainer.innerHTML = "";
+
+    q.options.forEach(option => {
+        let button = document.createElement("button");
+        button.textContent = option;
+        button.classList.add("option");
+        if (userAnswers[currentQuestionIndex] === option) {
+            button.classList.add("selected");
+        }
+        button.onclick = () => selectAnswer(option);
+        optionsContainer.appendChild(button);
+    });
+
+    document.getElementById("prev").style.display = currentQuestionIndex === 0 ? "none" : "inline-block";
+    document.getElementById("next").style.display = currentQuestionIndex === questions.length - 1 ? "none" : "inline-block";
+    document.getElementById("submit").style.display = currentQuestionIndex === questions.length - 1 ? "inline-block" : "none";
+
+    updateQuestionNumber(); // Update the question number display
+}	
+		
+		 function selectAnswer(option) {
+            const currentAnswer = userAnswers[currentQuestionIndex];
+            if (currentAnswer === option) {
+                // Deselect if the same option is clicked again
+                userAnswers[currentQuestionIndex] = null;
+            } else {
+                // Select the new option
+                userAnswers[currentQuestionIndex] = option;
+                attempts++;
+            }
+            displayQuestion(); // Refresh the question display
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                displayQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayQuestion();
+            }
+        }
+
+        function showResults() {
+            clearInterval(timerInterval);
+			
+			
+			
+			document.querySelector(".container-fluidp").style.display = "none";
+			document.querySelector(".quiz-container").style.display = "none";
+            document.getElementById("questionSection").style.display = "none";
+            document.getElementById("resultSection").style.display = "block";
+
+            let correctCount = 0;
+            let incorrectCount = 0;
+            let skippedCount = 0;
+            let resultTable = document.getElementById("resultTable");
+            resultTable.innerHTML = "";
+
+            for (let i = 0; i < questions.length; i++) {
+                let row = document.createElement("tr");
+                let questionCell = document.createElement("td");
+                let correctAnswerCell = document.createElement("td");
+                let userAnswerCell = document.createElement("td");
+
+                questionCell.textContent = questions[i].question;
+                correctAnswerCell.textContent = questions[i].correctAnswer;
+                userAnswerCell.textContent = userAnswers[i] || "Skipped";
+
+                if (userAnswers[i] === questions[i].correctAnswer) {
+                    correctCount++;
+                    userAnswerCell.classList.add("correct");
+                } else if (userAnswers[i] === null) {
+                    skippedCount++;
+                    userAnswerCell.classList.add("skipped");
+                } else {
+                    incorrectCount++;
+                    userAnswerCell.classList.add("incorrect");
+                }
+
+                row.appendChild(questionCell);
+                row.appendChild(correctAnswerCell);
+                row.appendChild(userAnswerCell);
+                resultTable.appendChild(row);
+            }
+
+            document.getElementById("score").textContent = correctCount;
+            document.getElementById("totalQuestions").textContent = questions.length;
+            document.getElementById("attempts").textContent = attempts;
+            document.getElementById("accuracy").textContent = ((correctCount / questions.length) * 100).toFixed(2) + "%";
+			
+				document.getElementById("error").textContent = ((incorrectCount / questions.length) * 100).toFixed(2) + "%";
+			
+			document.getElementById("correct").textContent = correctCount;
+    document.getElementById("incorrect").textContent = incorrectCount;
+   document.getElementById("skippedpp").textContent = skippedCount;
+
+            // Update Donut Chart
+            if (donutChart) {
+                donutChart.destroy();
+            }
+            const ctx = document.getElementById('donutChart').getContext('2d');
+            donutChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Correct', 'Incorrect', 'Skipped'],
+                    datasets: [{
+                        data: [correctCount, incorrectCount, skippedCount],
+                        backgroundColor: ['#4CAF50', '#F44336', '#FFC107'],
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'top' },
+                        title: { display: true, text: 'Quiz Results' }
+                    }
+                }
+            });
+        }
+
+        function saveData() {
+            const quizData = {
+                pair: document.getElementById("pairSelect").value,
+                group: document.getElementById("groupSelect").value,
+                operation: document.getElementById("operationSelect").value,
+                questionCount: document.getElementById("questionCount").value,
+                timer: document.getElementById("timerInput").value,
+                date: new Date().toLocaleString(),
+                score: document.getElementById("score").textContent,
+                attempts: document.getElementById("attempts").textContent,
+                accuracy: document.getElementById("accuracy").textContent,
+                questions: questions.map((q, index) => ({
+                    question: q.question,
+                    correctAnswer: q.correctAnswer,
+                    userAnswer: userAnswers[index] || "Skipped"
+                }))
+            };
+
+            // Save to localStorage
+            const savedQuizzes = JSON.parse(localStorage.getItem("quizzes")) || [];
+            savedQuizzes.push(quizData);
+            localStorage.setItem("quizzes", JSON.stringify(savedQuizzes));
+
+            alert("Data saved successfully!");
+        }
+    </script>
+  
+  
+		<script>
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+</script>
+</body>
+</html>
