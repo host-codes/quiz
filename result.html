@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Result | quiz.a-web.online</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Philosopher&amp;display=swap" rel="stylesheet">
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	  <style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+      margin-bottom: 20px;
+
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+</style>
+  <style>    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+  </style>
+  
+  
+  
+      <style>
+        
+
+     body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+	
+    margin: 0;
+}
+    
+        
+        
+   h1#notfound{
+    text-align: center;
+}
+        .timer {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: red;
+        }
+        .options button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .options button.selected {
+            background: #28a745;
+            color: white;
+        }
+		.options button:hover {
+            background: #dcdcdd;
+        }
+        .result-containerp {
+            display: none;
+        }
+        .result-box {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+          border: 3px solid whitesmoke;
+    padding: 4px;
+    text-align: center;
+        }
+		
+		th, td {
+    border: 3px solid whitesmoke;
+    padding: 4px;
+    text-align: center;
+}
+		
+		
+			  .alert-successskipped {
+    color: #3c763d;
+    background-color: #e7e7e7;
+    border-color: #d6e9c6;
+}
+	  .well_incorrect {
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: #ffb8a5;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
+}
+
+
+
+.well {
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: #f5f5f5;
+    /* border: 1px solid #e3e3e3; */
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
+    box-shadow: inset 0 1px 20px 0px rgb(0 0 0 / 5%);
+    background-color: #f5f1eb;
+}
+
+
+.img-circle {
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+}
+
+
+
+.question_number {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #108935;
+    background-color: #a4edba;
+    width: 69px;
+    height: 36px;
+    padding: 0px;
+    line-height: 33px;
+    border: 2px solid #8fd3a3;
+    border-radius: 20px;
+    margin-left: -12px;
+   /* padding-left: 8px; */
+    box-shadow: 0px 1px 8px 2px rgb(0 0 0 / 20%);
+}
+
+
+
+
+
+
+.navbar {
+    border-radius: 0px;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    font-family: inherit;
+    font-weight: bolder;
+    line-height: 1.1;
+    color: purple;
+}
+
+		
+		span#score {
+    font-size: 16px;
+    font-weight: bolder;
+}
+	span#totalQuestions {
+    font-size: 16px;
+    font-weight: bolder;
+}	
+		
+	span#attempts {
+    font-size: 16px;
+    font-weight: bolder;
+}	
+	span#error {
+	   font-size: 16px;
+    font-weight: bolder;
+}span#accuracy {
+   font-size: 16px;
+    font-weight: bolder;
+}span#incorrect {
+   font-size: 16px;
+    font-weight: bolder;
+}
+span#correct {
+   font-size: 16px;
+    font-weight: bolder;
+}
+span#skippedpp {
+   font-size: 16px;
+    font-weight: bolder;
+}	
+		
+		
+		.h2, h2 {
+    font-size: 22px;
+}
+	
+span#incorrectp {
+  font-size: 16px;
+    font-weight: bolder;
+}span#correctpp {
+  font-size: 16px;
+    font-weight: bolder;
+}
+span#skippedp {
+  font-size: 16px;
+    font-weight: bolder;
+}
+
+
+th {background-color: #800080;color: #fff;}
+
+
+     ::-webkit-scrollbar-track
+{
+background-color: #ffffff;
+}
+::-webkit-scrollbar {
+    width: 13px;
+    height: 5px;
+    background-color: #f5f8fc;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 2px solid #1f1f24;
+    background-color: #878787;
+    background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+}
+    </style>
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+  <a href="#home" class="active">Quiz</a>
+  <!--  <a href="#page">News</a>
+  <a href="#contact">Contact</a>
+  <a href="#about">About</a> -->
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
+
+
+
+
+
+
+  <!-- <div class="quiz-info">
+        <p><strong>Date:</strong> <span id="quizDate"></span></p>
+        <p><strong>Pair:</strong> <span id="quizPair"></span></p>
+        <p><strong>Group:</strong> <span id="quizGroup"></span></p>
+        <p><strong>Operation:</strong> <span id="quizOperation"></span></p>
+        <p><strong>Number of Questions:</strong> <span id="quizQuestionCount"></span></p>
+        <p><strong>Timer:</strong> <span id="quizTimer"></span> minutes</p>
+        <p><strong>Score:</strong> <span id="score"></span> / <span id="totalQuestions"></span></p>
+        <p><strong>Attempts:</strong> <span id="attempts"></span></p>
+        <p><strong>Accuracy:</strong> <span id="accuracy"></span>%</p>
+    </div>
+    <div id="chartContainer">
+        <canvas id="donutChart"></canvas>
+    </div>
+     <table id="resultTable">
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>Correct Answer</th>
+                <th>Your Answer</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Rows will be populated by JavaScript -- >
+        </tbody>
+    </table>-->
+
+    
+	
+
+
+  
+<div class="container text-center">
+		<div class="row">
+			<div class="col-sm-3 well">
+				<div class="well">
+					<div class="result-box">
+						<h3>Results</h3>
+						<canvas id="donutChart"></canvas>
+					</div> 
+					
+					
+					<!-- <div id="chartContainer">
+							<canvas id="donutChart"></canvas>
+						</div>-->
+					
+					
+				</div>
+				
+				 <p><strong>Date & Time:</strong> <span id="quizDate"></span></p>
+        <p><strong>Digit Pair:</strong> <span id="quizPair"></span></p>
+        <p><strong>Word Group:</strong> <span id="quizGroup"></span></p>
+        <p><strong>Operation:</strong> <span id="quizOperation"></span></p>
+        <p><strong>Number of Questions:</strong> <span id="quizQuestionCount"></span></p>
+        <p><strong>Timer:</strong> <span id="quizTimer"></span> minutes</p>
+				
+				<div class="well_incorrect"> <i class="fa fa-times" style="font-size:42px;color:red"></i>
+					<div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
+						<div style="display: flex; align-items: center;"> <span style="width: 15px; height: 15px; background-color: #dc3545; display: inline-block; margin-right: 5px;"></span> &nbsp;&nbsp;<span class="label label-danger">Incorrect</span> &nbsp; &nbsp;&nbsp;
+							<p> <span id="incorrectp">0</span></p>
+						</div>
+					</div>
+				</div>
+				<div class="alert alert-success fade in">
+					<!-- <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a> -->
+		<img src="https://host-codes.github.io/mycode/image/Correct.webp" class="img-circle" height="55" width="55" alt="Avatar"><!--<i class="fa fa-check" style="font-size:42px;color:#5cb85c;"></i> -->
+					<div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
+						<div style="display: flex; align-items: center;"> <span style="width: 15px; height: 15px; background-color: #28a745; display: inline-block; margin-right: 5px;"></span> &nbsp;&nbsp; <span class="label label-success">Correct</span> &nbsp; &nbsp;&nbsp;
+							<p><span id="correctpp">0</span></p>
+						</div>
+					</div>
+				</div>
+				<div class="alert alert-successskipped fade in">
+					<!--  <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>-->
+		<img src="https://host-codes.github.io/mycode/image/skipped.webp" class="img-circle" height="55" width="55" alt="Avatar"> <!--<i class="fa fa-step-forward" style="font-size:42px;color:#fff3cd;"></i>-->
+					<div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
+						<div style="display: flex; align-items: center;"> <span style="width: 15px; height: 15px; background-color: #ffc107; display: inline-block; margin-right: 5px;"></span> &nbsp;&nbsp; <span class="label label-default">Skipped</span> &nbsp; &nbsp;&nbsp;
+							<p> <span id="skippedp">0</span></p>
+						</div>
+					</div>
+				</div>  
+			</div>
+			<div class="col-sm-7">
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="well">
+							<h4>Score</h4>
+							 <img src="https://host-codes.github.io/mycode/image/score.webp" class="img-circle" height="55" width="55" alt="Avatar"> 
+							<!--<p> <span id="score">0</span> / <b><span id="total"></span></b></p> -->
+							
+							<p><span id="score">0</span> / <b><span id="totalQuestions"></span></b></p>
+							</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="well">
+							<h4>Attempt</h4>
+							<!--<p><strong>Attempt:</strong></p> --><img src="https://host-codes.github.io/mycode/image/attempt.webp" class="img-circle" height="55" width="55" alt="Avatar">
+							<p> <span id="attempts">0</span></p>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="well">
+							<h4>Error %</h4>
+							<img src="https://host-codes.github.io/mycode/image/error.webp" class="img-circle" height="55" width="55" alt="Avatar">
+						
+							
+							<p> <span id ="error">0</span></p>
+							
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="well">
+							<h4>Accuracy:</h4> <img src="https://host-codes.github.io/mycode/image/accuracy.webp" class="img-circle" height="55" width="55" alt="Avatar">
+							<p> <span id="accuracy">0%</span></p>
+						</div>
+					</div>
+					
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="panel panel-default text-left">
+							<div class="panel-body">
+								<p contenteditable="true">Detail results</p>
+							
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="well"> </div>
+					</div>
+					<div class="col-sm-9">
+						<div class="well">
+							<p> Correct , Incorrect, Skipped.</p>
+							<div class="result-box">
+								<h3>Review</h3>
+								<!--<table id="review-table">
+									<tr>
+										<th>Question</th>
+										<th>Correct Answer</th>
+										<th>Your Answer</th>
+									</tr>
+								</table> -->
+								
+								
+								
+								     <!-- <table id="resultTable">
+									<tr>
+										<th>Question</th>
+										<th>Correct Answer</th>
+										<th>Your Answer</th>
+									</tr>
+								</table> -->
+								
+							              <table id="resultTable">
+											<tr>
+												<th>Question</th>
+												<th>Correct Answer</th>
+												<th>Your Answer</th>
+											</tr>
+											<tbody ></tbody>
+										</table> 
+										
+										
+										
+										 
+										
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-2 well">
+				<!--<div class="thumbnail">
+					<p>Upcoming Events:</p> <img src="paris.jpg" alt="Paris" width="400" height="300">
+					<p><strong>Paris</strong></p>
+					<p>Fri. 27 November 2015</p>
+					<button class="btn btn-primary">Info</button>
+				</div> -->
+				<div class="well">
+					<p>fraction to percentage (quiz)</p>
+					<button class="btn btn-primary">start</button>
+				</div>
+				<!--<div class="well">
+					<p>ADS</p>
+				</div> -->
+			</div>
+		</div>
+	</div>
+</div>   <!--  End Tag id="result-s -->
+
+
+
+
+
+
+
+
+
+<script>
+function _0x18c2(_0x170ecf,_0x2bbf1e){const _0x44c751=_0x44c7();return _0x18c2=function(_0x18c2ff,_0x320c77){_0x18c2ff=_0x18c2ff-0x10d;let _0x2c3cb3=_0x44c751[_0x18c2ff];return _0x2c3cb3;},_0x18c2(_0x170ecf,_0x2bbf1e);}const _0x80d3f2=_0x18c2;(function(_0x34aa98,_0x5bbe6d){const _0x544664=_0x18c2,_0x1b6e56=_0x34aa98();while(!![]){try{const _0x4f0d28=parseInt(_0x544664(0x151))/0x1+parseInt(_0x544664(0x13f))/0x2*(parseInt(_0x544664(0x14f))/0x3)+parseInt(_0x544664(0x124))/0x4+-parseInt(_0x544664(0x134))/0x5+-parseInt(_0x544664(0x12f))/0x6*(parseInt(_0x544664(0x129))/0x7)+-parseInt(_0x544664(0x110))/0x8+-parseInt(_0x544664(0x14e))/0x9*(-parseInt(_0x544664(0x143))/0xa);if(_0x4f0d28===_0x5bbe6d)break;else _0x1b6e56['push'](_0x1b6e56['shift']());}catch(_0x1261da){_0x1b6e56['push'](_0x1b6e56['shift']());}}}(_0x44c7,0x84acc));if(window[_0x80d3f2(0x147)]['hostname']!==_0x80d3f2(0x13b)){console[_0x80d3f2(0x150)](_0x80d3f2(0x13d)),window[_0x80d3f2(0x147)][_0x80d3f2(0x152)]=_0x80d3f2(0x119);throw new Error(_0x80d3f2(0x144));}else{console['log']('Script\x20running\x20on\x20the\x20authorized\x20domain.');const urlParams=new URLSearchParams(window['location'][_0x80d3f2(0x14c)]),index=urlParams[_0x80d3f2(0x137)]('index'),quizzes=JSON['parse'](localStorage['getItem'](_0x80d3f2(0x13e)))||[],quiz=quizzes[index];if(quiz){document['getElementById']('quizDate')[_0x80d3f2(0x118)]=quiz['date'],document[_0x80d3f2(0x11b)]('quizPair')['textContent']=quiz[_0x80d3f2(0x122)],document[_0x80d3f2(0x11b)](_0x80d3f2(0x12e))['textContent']=quiz[_0x80d3f2(0x13a)],document[_0x80d3f2(0x11b)](_0x80d3f2(0x114))[_0x80d3f2(0x118)]=quiz['operation'],document[_0x80d3f2(0x11b)](_0x80d3f2(0x145))['textContent']=quiz[_0x80d3f2(0x135)],document[_0x80d3f2(0x11b)](_0x80d3f2(0x126))[_0x80d3f2(0x118)]=quiz[_0x80d3f2(0x153)],document[_0x80d3f2(0x11b)](_0x80d3f2(0x138))[_0x80d3f2(0x118)]=quiz[_0x80d3f2(0x138)],document[_0x80d3f2(0x11b)](_0x80d3f2(0x112))[_0x80d3f2(0x118)]=quiz[_0x80d3f2(0x142)][_0x80d3f2(0x117)],document['getElementById']('attempts')[_0x80d3f2(0x118)]=quiz[_0x80d3f2(0x115)],document[_0x80d3f2(0x11b)]('accuracy')[_0x80d3f2(0x118)]=quiz[_0x80d3f2(0x12d)];const tableBody=document[_0x80d3f2(0x141)]('#resultTable\x20tbody');quiz[_0x80d3f2(0x142)]['forEach'](_0x1069aa=>{const _0x20ca65=_0x80d3f2,_0x351076=document[_0x20ca65(0x133)]('tr');_0x351076[_0x20ca65(0x146)]=_0x20ca65(0x131)+_0x1069aa[_0x20ca65(0x139)]+_0x20ca65(0x14a)+_0x1069aa[_0x20ca65(0x10f)]+_0x20ca65(0x14a)+_0x1069aa[_0x20ca65(0x11f)]+_0x20ca65(0x130);if(_0x1069aa[_0x20ca65(0x11f)]===_0x1069aa['correctAnswer'])_0x351076['classList']['add'](_0x20ca65(0x116)),_0x351076[_0x20ca65(0x128)][_0x20ca65(0x111)]=_0x20ca65(0x127);else _0x1069aa[_0x20ca65(0x11f)]===_0x20ca65(0x121)?(_0x351076['classList'][_0x20ca65(0x11e)](_0x20ca65(0x11a)),_0x351076[_0x20ca65(0x128)][_0x20ca65(0x111)]='#fff3cd'):(_0x351076[_0x20ca65(0x14d)]['add'](_0x20ca65(0x12c)),_0x351076[_0x20ca65(0x128)]['backgroundColor']=_0x20ca65(0x120));tableBody[_0x20ca65(0x123)](_0x351076);});const correctCount=quiz[_0x80d3f2(0x142)][_0x80d3f2(0x125)](_0x3155e1=>_0x3155e1['userAnswer']===_0x3155e1[_0x80d3f2(0x10f)])[_0x80d3f2(0x117)],incorrectCount=quiz[_0x80d3f2(0x142)][_0x80d3f2(0x125)](_0x128d75=>_0x128d75[_0x80d3f2(0x11f)]!==_0x128d75[_0x80d3f2(0x10f)]&&_0x128d75[_0x80d3f2(0x11f)]!==_0x80d3f2(0x121))[_0x80d3f2(0x117)],skippedCount=quiz[_0x80d3f2(0x142)][_0x80d3f2(0x125)](_0x3e4446=>_0x3e4446[_0x80d3f2(0x11f)]==='Skipped')[_0x80d3f2(0x117)];document[_0x80d3f2(0x11b)](_0x80d3f2(0x11d))[_0x80d3f2(0x146)]=incorrectCount,document[_0x80d3f2(0x11b)](_0x80d3f2(0x10d))[_0x80d3f2(0x146)]=skippedCount,document['getElementById']('correctpp')[_0x80d3f2(0x146)]=correctCount,console[_0x80d3f2(0x150)](quiz[_0x80d3f2(0x142)][_0x80d3f2(0x117)]),document[_0x80d3f2(0x11b)](_0x80d3f2(0x13c))[_0x80d3f2(0x146)]=(incorrectCount/quiz[_0x80d3f2(0x142)][_0x80d3f2(0x117)]*0x64)[_0x80d3f2(0x132)](0x2)+'%',console[_0x80d3f2(0x150)](attempts),console[_0x80d3f2(0x150)](skippedCount),console[_0x80d3f2(0x150)](incorrectCount),console['log'](correctpp);const ctx=document['getElementById'](_0x80d3f2(0x140))[_0x80d3f2(0x148)]('2d');new Chart(ctx,{'type':'doughnut','data':{'labels':[_0x80d3f2(0x12b),_0x80d3f2(0x11c),_0x80d3f2(0x121)],'datasets':[{'data':[correctCount,incorrectCount,skippedCount],'backgroundColor':['#4CAF50',_0x80d3f2(0x10e),_0x80d3f2(0x136)]}]},'options':{'responsive':!![],'plugins':{'legend':{'position':_0x80d3f2(0x14b)},'title':{'display':!![],'text':'Quiz\x20Results'}}}});}else{document['body'][_0x80d3f2(0x146)]=_0x80d3f2(0x149);let style=document[_0x80d3f2(0x133)](_0x80d3f2(0x128));style[_0x80d3f2(0x146)]=_0x80d3f2(0x113),document[_0x80d3f2(0x12a)][_0x80d3f2(0x123)](style);}}function _0x44c7(){const _0x2f220e=['getElementById','Incorrect','incorrectp','add','userAnswer','#f8d7da','Skipped','pair','appendChild','4224216tKFqrz','filter','quizTimer','#d4edda','style','1805853HNIJLZ','head','Correct','incorrect','accuracy','quizGroup','6XUTTBq','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>','toFixed','createElement','4930405oMyVwv','questionCount','#FFC107','get','score','question','group','quiz.a-web.online','error','This\x20script\x20is\x20not\x20allowed\x20to\x20run\x20on\x20this\x20domain.','quizzes','282CcLdLh','donutChart','querySelector','questions','10RahyIw','Unauthorized\x20domain','quizQuestionCount','innerHTML','location','getContext','<h1\x20class=\x27notfound\x27>Quiz\x20not\x20found!</h1>','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>','top','search','classList','2094885BsBzRZ','9150jqXbNL','log','540194kFWeZf','href','timer','skippedp','#F44336','correctAnswer','3772536nRrHIu','backgroundColor','totalQuestions','\x0a\x20\x20\x20\x20\x20\x20\x20\x20h1.notfound\x20{\x20\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20margin-bottom:\x2013px;\x0a\x20\x20\x20\x20animation:\x20fadeIn\x201s\x20ease-in-out;\x0a\x20\x20\x20\x20font-family:\x20\x27Philosopher\x27,\x20sans-serif;\x0a\x20\x20\x20\x20font-size:\x2032px;\x0a\x20\x20\x20\x20font-weight:\x20bolder;\x0a\x20\x20\x20\x20text-shadow:\x202px\x202px\x20#b3abab99;\x0a\x20\x20\x20\x20background:\x20-webkit-linear-gradient(rgb(16\x2018\x2017),\x20rgb(19\x2036\x2042));\x0a\x20\x20\x20\x20-webkit-background-clip:\x20text;\x0a\x20\x20\x20\x20-webkit-text-fill-color:\x20transparent;\x0a\x20\x20\x20\x20padding-top:\x20125px;\x0a\x20\x20\x20\x20animation:\x20fadeIn\x201s\x20ease-in-out;\x0a\x20\x20\x20\x20text-align:\x20center;\x0a\x20\x20\x20\x20\x20\x20\x20\x20}\x0a\x20\x20\x20\x20','quizOperation','attempts','correct','length','textContent','https://quiz.a-web.online/','skipped'];_0x44c7=function(){return _0x2f220e;};return _0x44c7();}
+ </script>
+
+	<script>
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+</script>
+</body>
+</html>

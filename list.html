@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+  <title>Quiz List | quiz.a-web.online</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+
+    
+        th, td { border: 1px solid #333; padding: 10px; text-align: center; }
+       th {
+    background-color: #930d93;
+    color: white;
+    width: 2px;
+
+}
+        .delete-icon { cursor: pointer; color: red; }
+        tr { cursor: pointer; font-size: 15px; }
+        tr:hover { background-color: #f5ccf5; }
+        .select-all { margin-bottom: 10px; }
+
+        /* Make the table scrollable */
+        .table-container {
+            max-height: 500px; /* Adjust height as needed */
+            overflow-y: auto;
+            display: block;
+        }
+    </style>
+	<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #f5f1eb;
+}
+
+ .scroll {
+  max-height: 60px;
+  overflow: auto;
+}
+</style>
+
+<style>
+    body {
+
+        box-shadow: inset 0 1px 19px 0px rgb(0 0 0 / 5%);
+    background-color: #f5f1eb;
+    }
+
+    h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .select-all {
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .select-all input[type="checkbox"] {
+        cursor: pointer;
+    }
+
+.select-all button {
+    background-color: #ed9797;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 21px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .select-all button:hover {
+        background-color: #ff1a1a;
+    }
+
+    .table-container {
+        max-height: 500px; /* Adjust height as needed */
+        overflow-y: auto;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: white;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    thead {
+        position: sticky;
+        top: 0;
+        background-color: #800080;
+        color: white;
+        z-index: 1;
+    }
+
+th, td {
+    padding: 6px;
+    text-align: center;
+    border-bottom: 2px solid #e7e7e7;
+}
+
+    th {
+        font-weight: bold;
+        text-transform: capitalize;
+    }
+
+    tbody tr {
+        transition: background-color 0.3s ease;
+    }
+
+    tbody tr:hover {
+        background-color: #f5ccf5;
+    }
+
+    .row-checkbox {
+        cursor: pointer;
+    }
+
+    .delete-icon {
+        cursor: pointer;
+        color: #ff4d4d;
+        transition: color 0.3s ease;
+    }
+
+    .delete-icon:hover {
+        color: #ff1a1a;
+    }
+	
+	
+	
+	     ::-webkit-scrollbar-track
+{
+background-color: #ffffff;
+}
+::-webkit-scrollbar {
+    width: 13px;
+    height: 5px;
+    background-color: #f5f8fc;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 2px solid #930d93;
+    background-color: #a90da9;
+    background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+}
+</style>
+
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+      margin-bottom: 20px;
+
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="topnav" id="myTopnav">
+  <a href="#home" class="active">Quiz</a>
+  <!--  <a href="#page">News</a>
+  <a href="#contact">Contact</a>
+  <a href="#about">About</a> -->
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
+
+<div style="padding-left:11px">
+  <center><h2>Saved Quiz Attempts</h2>
+  <p>Click on Row to view Attempts Quiz detail</p> </center>
+</div>
+
+
+    <div class="select-all">
+        <input type="checkbox" id="selectAll" onchange="toggleSelectAll()"> Select All
+        <button onclick="deleteSelected()"><i class="fa fa-trash" aria-hidden="true"></i> Delete Selected</button>
+    </div>
+    <div class="table-container">
+        <table id="quizTable">
+            <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>Date & Time</th>
+                    <th>Digit Pair</th>
+                    <th>Word Group:</th>
+                    <th>Operation</th>
+                    <th>No. of Questions</th>
+                    <th>Timer</th>
+                    <th>Score</th>
+                    <th>Attempts</th>
+                    <th>Accuracy</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows will be populated by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+	
+	<script>
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+</script>
+
+    <script>
+function _0x1518(){const _0x202c63=['492228Quqaxe','#quizTable\x20tbody','pair','554292EdNYwG','forEach','target','8KOZVQP','Script\x20running\x20on\x20the\x20authorized\x20domain.','#quizTable\x20tbody\x20tr.selected','querySelectorAll','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>','children','timer','703098XcubEC','splice','25SUAvlM','input[type=\x27checkbox\x27]','addEventListener','_blank','contains','indexOf',')\x22><i\x20class=\x22fa\x20fa-trash\x22\x20aria-hidden=\x22true\x22></i></span></td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','add','Unauthorized\x20domain','querySelector','414333yoluwB','classList','Are\x20you\x20sure\x20you\x20want\x20to\x20delete\x20this\x20quiz\x20attempt?','Please\x20select\x20at\x20least\x20one\x20row\x20to\x20delete.','attempts','reload','274014edwKOO','5847016gvuiEq','group','score','selectAll','\x20minutes</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>','This\x20script\x20is\x20not\x20allowed\x20to\x20run\x20on\x20this\x20domain.','from','open','hostname','operation','checked','location','result.html?index=','click','closest','quizzes','parse','https://quiz.a-web.online/','toggle','length','createElement','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td><input\x20type=\x22checkbox\x22\x20class=\x22row-checkbox\x22></td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>','accuracy','questionCount','quiz.a-web.online','date','delete-icon','Are\x20you\x20sure\x20you\x20want\x20to\x20delete\x20the\x20selected\x20quiz\x20attempts?','6794641CIUPij','selected','remove','fa-trash','stringify','log','getElementById','</td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td><span\x20class=\x22delete-icon\x22\x20onclick=\x22deleteQuiz(','getItem'];_0x1518=function(){return _0x202c63;};return _0x1518();}function _0x17f5(_0x2b4f51,_0x341c11){const _0x1518cf=_0x1518();return _0x17f5=function(_0x17f52f,_0x26fc7b){_0x17f52f=_0x17f52f-0xf9;let _0x3a1881=_0x1518cf[_0x17f52f];return _0x3a1881;},_0x17f5(_0x2b4f51,_0x341c11);}const _0x350fdd=_0x17f5;(function(_0x52f481,_0x592512){const _0x5bb78a=_0x17f5,_0x2bae15=_0x52f481();while(!![]){try{const _0x2ce6fc=parseInt(_0x5bb78a(0x11c))/0x1+parseInt(_0x5bb78a(0x10a))/0x2+-parseInt(_0x5bb78a(0x116))/0x3*(-parseInt(_0x5bb78a(0x103))/0x4)+parseInt(_0x5bb78a(0x10c))/0x5*(-parseInt(_0x5bb78a(0x100))/0x6)+parseInt(_0x5bb78a(0x139))/0x7+-parseInt(_0x5bb78a(0x11d))/0x8+parseInt(_0x5bb78a(0xfd))/0x9;if(_0x2ce6fc===_0x592512)break;else _0x2bae15['push'](_0x2bae15['shift']());}catch(_0x33e360){_0x2bae15['push'](_0x2bae15['shift']());}}}(_0x1518,0xb3491));if(window[_0x350fdd(0x128)][_0x350fdd(0x125)]!==_0x350fdd(0x135)){console['log'](_0x350fdd(0x122)),window[_0x350fdd(0x128)]['href']=_0x350fdd(0x12e);throw new Error(_0x350fdd(0x114));}else{console[_0x350fdd(0xf9)](_0x350fdd(0x104));const quizzes=JSON[_0x350fdd(0x12d)](localStorage[_0x350fdd(0xfc)]('quizzes'))||[],tableBody=document[_0x350fdd(0x115)](_0x350fdd(0xfe));quizzes[_0x350fdd(0x101)]((_0x580ff5,_0x23434)=>{const _0x1fb5d7=_0x350fdd,_0xaa2b81=document[_0x1fb5d7(0x131)]('tr');_0xaa2b81['innerHTML']=_0x1fb5d7(0x132)+_0x580ff5[_0x1fb5d7(0x136)]+_0x1fb5d7(0x107)+_0x580ff5[_0x1fb5d7(0xff)]+_0x1fb5d7(0x107)+_0x580ff5[_0x1fb5d7(0x11e)]+_0x1fb5d7(0x107)+_0x580ff5[_0x1fb5d7(0x126)]+_0x1fb5d7(0x107)+_0x580ff5[_0x1fb5d7(0x134)]+_0x1fb5d7(0x107)+_0x580ff5[_0x1fb5d7(0x109)]+_0x1fb5d7(0x121)+_0x580ff5[_0x1fb5d7(0x11f)]+_0x1fb5d7(0x107)+_0x580ff5[_0x1fb5d7(0x11a)]+_0x1fb5d7(0x107)+_0x580ff5[_0x1fb5d7(0x133)]+_0x1fb5d7(0xfb)+_0x23434+_0x1fb5d7(0x112),_0xaa2b81[_0x1fb5d7(0x10e)](_0x1fb5d7(0x12a),_0x375889=>{const _0x10866a=_0x1fb5d7;!_0x375889[_0x10866a(0x102)][_0x10866a(0x117)][_0x10866a(0x110)]('row-checkbox')&&!_0x375889[_0x10866a(0x102)]['classList'][_0x10866a(0x110)]('delete-icon')&&!_0x375889[_0x10866a(0x102)]['classList'][_0x10866a(0x110)](_0x10866a(0x13c))&&window[_0x10866a(0x124)](_0x10866a(0x129)+_0x23434,_0x10866a(0x10f));}),tableBody['appendChild'](_0xaa2b81);});function deleteQuiz(_0x1adb1c){const _0x19d912=_0x350fdd;confirm(_0x19d912(0x118))&&(quizzes[_0x19d912(0x10b)](_0x1adb1c,0x1),localStorage['setItem'](_0x19d912(0x12c),JSON['stringify'](quizzes)),location[_0x19d912(0x11b)]());}function deleteSelected(){const _0x551391=_0x350fdd,_0x19d028=document['querySelectorAll'](_0x551391(0x105));if(_0x19d028[_0x551391(0x130)]===0x0){alert(_0x551391(0x119));return;}confirm(_0x551391(0x138))&&(_0x19d028['forEach'](_0x43909f=>{const _0x49cf50=_0x551391,_0x5a180a=Array[_0x49cf50(0x123)](tableBody[_0x49cf50(0x108)])[_0x49cf50(0x111)](_0x43909f);quizzes['splice'](_0x5a180a,0x1);}),localStorage['setItem'](_0x551391(0x12c),JSON[_0x551391(0x13d)](quizzes)),location['reload']());}function toggleSelectAll(){const _0x4c4db9=_0x350fdd,_0xcf8c9e=document[_0x4c4db9(0x106)]('.row-checkbox'),_0x10df2d=document[_0x4c4db9(0xfa)](_0x4c4db9(0x120))[_0x4c4db9(0x127)];_0xcf8c9e[_0x4c4db9(0x101)](_0x252775=>{const _0x407d23=_0x4c4db9;_0x252775[_0x407d23(0x127)]=_0x10df2d;const _0x5842c9=_0x252775['closest']('tr');_0x10df2d?_0x5842c9[_0x407d23(0x117)][_0x407d23(0x113)](_0x407d23(0x13a)):_0x5842c9['classList'][_0x407d23(0x13b)](_0x407d23(0x13a));});}tableBody[_0x350fdd(0x10e)](_0x350fdd(0x12a),_0x36106f=>{const _0x5d1beb=_0x350fdd;if(_0x36106f[_0x5d1beb(0x102)][_0x5d1beb(0x117)][_0x5d1beb(0x110)](_0x5d1beb(0x137))||_0x36106f[_0x5d1beb(0x102)][_0x5d1beb(0x117)][_0x5d1beb(0x110)](_0x5d1beb(0x13c))){_0x36106f['stopPropagation']();return;}const _0x3bfb7c=_0x36106f['target'][_0x5d1beb(0x12b)](_0x5d1beb(0x10d));if(_0x3bfb7c){const _0x5bc609=_0x3bfb7c[_0x5d1beb(0x12b)]('tr');_0x5bc609['classList'][_0x5d1beb(0x12f)](_0x5d1beb(0x13a),_0x3bfb7c[_0x5d1beb(0x127)]);}});}
+    </script>
+</body>
+</html>
