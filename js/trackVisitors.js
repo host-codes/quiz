@@ -1,6 +1,6 @@
 const rawURL = "https://raw.githubusercontent.com/host-codes/quiz/main/js/visitors.json";
 const githubAPI = "https://api.github.com/repos/host-codes/quiz/contents/js/visitors.json";
-const TOKEN = "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"; // ⚠️ Replace with your GitHub token
+const TOKEN = "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"; // ⚠️ Replace with your GitHub token
 
 async function fetchVisitorData() {
     try {
