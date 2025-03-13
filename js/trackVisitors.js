@@ -1,56 +1,57 @@
-const rawURL = "https://raw.githubusercontent.com/host-codes/quiz/main/js/visitors.json";
-const githubAPI = "https://api.github.com/repos/host-codes/quiz/contents/js/visitors.json";
-const TOKEN = "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"; // ⚠️ Replace with your GitHub token
+const GITHUB_USERNAME = "host-codes"; // Your GitHub username
+const REPO_NAME = "quiz"; // Repository name
+const FILE_PATH = "js/visitors.json"; // File path in repo
+const TOKEN = "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"; // Replace with your new token
 
-async function fetchVisitorData() {
-    try {
-        const response = await fetch(rawURL);
-        if (!response.ok) throw new Error("Failed to fetch visitor data");
+async function updateVisitorData(newData) {
+    const url = `https://api.github.com/repos/${GITHUB_USERNAME}/${REPO_NAME}/contents/${FILE_PATH}`;
 
-        const data = await response.json();
-        console.log("Fetched Visitor Data:", data);
-        return data;
-    } catch (error) {
-        console.error("❌ Error fetching visitor data:", error);
+    // Fetch file SHA (required for updating a file)
+    const fileResponse = await fetch(url, {
+        headers: { Authorization: `token ${TOKEN}` }
+    });
+
+    if (!fileResponse.ok) {
+        console.error("❌ Failed to fetch file SHA:", fileResponse.statusText);
+        return;
     }
-}
 
-async function updateVisitorData() {
-    const data = await fetchVisitorData();
-    if (!data) return;
+    const fileData = await fileResponse.json();
+    const sha = fileData.sha; // Extract SHA
 
-    // Update visitor count
-    data.today += 1;
+    // Encode new data in Base64
+    const updatedContent = btoa(JSON.stringify(newData, null, 2));
 
-    // Push updates to GitHub
-    const newContent = btoa(JSON.stringify(data, null, 2)); // Encode as Base64
-    const response = await fetch(githubAPI, {
+    // Send the update request
+    const response = await fetch(url, {
         method: "PUT",
         headers: {
             "Authorization": `token ${TOKEN}`,
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            message: "Update visitor count",
-            content: newContent,
-            sha: await getFileSHA()
+            message: "Updating visitor data",
+            content: updatedContent,
+            sha: sha // Required for updates
         })
     });
 
-    if (response.ok) console.log("✅ Visitor data updated successfully!");
-    else console.error("❌ Failed to update visitor data.");
-}
-
-async function getFileSHA() {
-    try {
-        const response = await fetch(githubAPI, {
-            headers: { "Authorization": `token ${TOKEN}` }
-        });
-        const data = await response.json();
-        return data.sha; // Required for updating file
-    } catch (error) {
-        console.error("❌ Error fetching file SHA:", error);
+    if (response.ok) {
+        console.log("✅ Visitor data updated successfully!");
+    } else {
+        console.error("❌ Failed to update visitor data:", response.statusText);
     }
 }
 
-updateVisitorData();
+// Example: Increment "today" count and update the JSON file
+async function incrementTodayCount() {
+    const visitorData = {
+        today: 1,
+        yesterday: 0,
+        last7days: [],
+        last30days: []
+    };
+    await updateVisitorData(visitorData);
+}
+
+incrementTodayCount();
