@@ -1,39 +1,31 @@
 async function getStats() {
+    const rawURL = "https://raw.githubusercontent.com/host-codes/quiz/main/js/visitors.json";
+
     try {
-        const response = await fetch("https://raw.githubusercontent.com/host-codes/quiz/main/js/visitors.json");
-        if (!response.ok) throw new Error("Failed to fetch visitor data");
-        
-        const data = await response.json();
-        console.log("Fetched Data:", data);
+        const response = await fetch(rawURL);
+        if (!response.ok) throw new Error("Failed to fetch visitor stats");
 
-        if (!data.stats || !Array.isArray(data.stats)) {
-            throw new Error("Invalid data format");
-        }
-
-        return data.stats;
+        const stats = await response.json();
+        console.log("Visitor Stats:", stats);
+        renderChart(stats);
     } catch (error) {
-        console.error("Error fetching visitor stats:", error);
-        return [];
+        console.error("❌ Error fetching visitor stats:", error);
     }
 }
 
-async function renderChart() {
-    const stats = await getStats();
-    
-    const dates = stats.map(entry => entry.date);
-    const views = stats.map(entry => entry.views);
+function renderChart(stats) {
+    const ctx = document.getElementById("visitorChart").getContext("2d");
 
-    new Chart(document.getElementById("visitorChart"), {
+    new Chart(ctx, {
         type: "doughnut",
         data: {
-            labels: dates,
+            labels: ["Today", "Yesterday", "Last 7 Days", "Last 30 Days"],
             datasets: [{
-                label: "Visitors",
-                data: views,
+                data: [stats.today, stats.yesterday, stats.last7days.length, stats.last30days.length],
                 backgroundColor: ["#ff6384", "#36a2eb", "#ffce56", "#4bc0c0"]
             }]
         }
     });
 }
 
-renderChart();
+getStats();
