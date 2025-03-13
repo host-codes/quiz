@@ -1,15 +1,27 @@
 async function getStats() {
-    let data = await fetchVisitorData();
-    let today = new Date().toISOString().split("T")[0];
+    try {
+        const response = await fetch("https://raw.githubusercontent.com/host-codes/quiz/main/js/visitors.json");
+        
+        if (!response.ok) {
+            throw new Error(`Failed to fetch: ${response.statusText}`);
+        }
 
-    let todayVisits = data.filter(d => d.date === today).reduce((sum, d) => sum + d.count, 0);
-    let yesterdayVisits = data.filter(d => d.date === getPreviousDate(1)).reduce((sum, d) => sum + d.count, 0);
-    let last7Days = data.filter(d => isWithinLastDays(d.date, 7)).reduce((sum, d) => sum + d.count, 0);
-    let lastMonth = data.filter(d => isWithinLastDays(d.date, 30)).reduce((sum, d) => sum + d.count, 0);
+        const data = await response.json();
+        console.log("Fetched Data:", data);
 
-    return { todayVisits, yesterdayVisits, last7Days, lastMonth };
+        // ✅ Ensure 'stats' exists and is an array
+        if (!data.stats || !Array.isArray(data.stats)) {
+            throw new Error("Invalid data format: 'stats' is missing or not an array");
+        }
+
+        return data.stats.filter(item => item.date); // Modify as needed
+    } catch (error) {
+        console.error("Error fetching visitor stats:", error);
+        return [];
+    }
 }
 
+getStats();
 function getPreviousDate(daysAgo) {
     let d = new Date();
     d.setDate(d.getDate() - daysAgo);
