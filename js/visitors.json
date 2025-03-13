@@ -1,3 +1,46 @@
-{
-  "stats": []
+const GITHUB_USERNAME = "host-codes";  // Your GitHub username
+const REPO_NAME = "quiz";  // Repository name
+const FILE_PATH = "js/visitors.json";  // JSON file path
+const TOKEN = "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"; // 🔥 Use a fresh GitHub token
+
+async function updateVisitorData(newData) {
+    const apiURL = `https://api.github.com/repos/${GITHUB_USERNAME}/${REPO_NAME}/contents/${FILE_PATH}`;
+
+    try {
+        // 1️⃣ Fetch current file metadata (to get SHA)
+        const fileResponse = await fetch(apiURL, {
+            headers: { "Authorization": `token ${TOKEN}` }
+        });
+
+        if (!fileResponse.ok) throw new Error("❌ Failed to fetch file metadata");
+
+        const fileData = await fileResponse.json();
+        const sha = fileData.sha;
+
+        // 2️⃣ Convert new data to Base64 format
+        const updatedContent = btoa(JSON.stringify(newData, null, 2));
+
+        // 3️⃣ Update file using GitHub API
+        const updateResponse = await fetch(apiURL, {
+            method: "PUT",
+            headers: {
+                "Authorization": `token ${TOKEN}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                message: "Updated visitor stats",
+                content: updatedContent,
+                sha: sha
+            })
+        });
+
+        if (!updateResponse.ok) throw new Error("❌ Failed to update file");
+
+        console.log("✅ Visitor data updated successfully!");
+    } catch (error) {
+        console.error("❌ Error updating GitHub:", error);
+    }
 }
+
+// Example: Updating visitor count
+updateVisitorData({ stats: [{ date: "2025-03-12", views: 100 }] });
