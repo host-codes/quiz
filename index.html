@@ -1149,5 +1149,16 @@ function myFunction() {
   }
 }
 </script>
+
+	<script>
+  function trackVisitor() {
+    const page = encodeURIComponent(window.location.pathname);
+    fetch("https://script.google.com/macros/s/AKfycbzLcEjVGAHDtlJ74-J0XBagWfCq2phbiRCEwMRjbDmKhQeq4K1S4PXF9RGpQkX_RTvGiA/exec?page=" + page)
+      .then(response => response.text())
+      .then(data => console.log("Visitor Count Updated"));
+  }
+  trackVisitor();
+</script>
+
 </body>
 </html>
