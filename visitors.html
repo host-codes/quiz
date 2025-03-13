@@ -3,13 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visitor Stats</title>
+    <title>Website Visitor Stats</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script defer src="js/trackVisitors.js"></script>
-    <script defer src="js/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        canvas {
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        table {
+            width: 60%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
 </head>
 <body>
-    <h1>Website Visitor Statistics</h1>
-    <canvas id="visitorChart" width="400" height="400"></canvas>
+
+    <h2>Website Visitor Stats</h2>
+
+    <h3>Visitors (Doughnut Chart)</h3>
+    <canvas id="doughnutChart"></canvas>
+
+    <h3>Visitors Trend (Line Chart)</h3>
+    <canvas id="lineChart"></canvas>
+
+    <h3>Visitor Table</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Time Period</th>
+                <th>Visitors</th>
+            </tr>
+        </thead>
+        <tbody id="visitorTable">
+        </tbody>
+    </table>
+
+    <script>
+        // Fetch visitor data from Google Apps Script
+        fetch("AKfycbzLcEjVGAHDtlJ74-J0XBagWfCq2phbiRCEwMRjbDmKhQeq4K1S4PXF9RGpQkX_RTvGiA")
+            .then(response => response.json())
+            .then(data => {
+                console.log("Fetched Data:", data);
+
+                const visitorCounts = [
+                    data.today,
+                    data.yesterday,
+                    data.last7Days,
+                    data.lastMonth
+                ];
+                const labels = ["Today", "Yesterday", "Last 7 Days", "Last Month"];
+
+                // Populate Table
+                let tableContent = "";
+                labels.forEach((label, index) => {
+                    tableContent += `<tr><td>${label}</td><td>${visitorCounts[index]}</td></tr>`;
+                });
+                document.getElementById("visitorTable").innerHTML = tableContent;
+
+                // Doughnut Chart
+                new Chart(document.getElementById("doughnutChart"), {
+                    type: "doughnut",
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            data: visitorCounts,
+                            backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4CAF50"]
+                        }]
+                    }
+                });
+
+                // Line Chart
+                new Chart(document.getElementById("lineChart"), {
+                    type: "line",
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: "Visitors",
+                            data: visitorCounts,
+                            borderColor: "#36A2EB",
+                            fill: false
+                        }]
+                    }
+                });
+            })
+            .catch(error => console.error("Error fetching data:", error));
+    </script>
+
 </body>
 </html>
