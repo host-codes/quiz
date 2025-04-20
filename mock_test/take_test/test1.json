@@ -1,0 +1,43 @@
+{
+    "title": "Reasoning (Day-1)",
+    "description": "Practice reasoning questions for competitive exams",
+    "duration": 1800,
+    "questions": [
+        {
+            "text": "Study the following information carefully and answer the below questions.\n\nIn a certain code language\n'Mangrove Kapok Tibetan Aspen' means 'ad hm lg ym',\n'Sequoia Kapok Socotra Dragon' means 'pv hm gk mk',\n'Mangrove Sequoia Juniper Tree' means 'ad pv qr zt',\n'Juniper Tibetan Sagano Bamboo' means 'qr lg mx pz'",
+            "options": [
+                "Aspen",
+                "Kapok",
+                "Mangrove",
+                "Sequoia",
+                "Juniper"
+            ],
+            "correctAnswer": 0,
+            "explanation": "By comparing the first and third statements, we can deduce that 'ym' stands for 'Aspen'."
+        },
+        {
+            "text": "If in a certain code, 'EDUCATION' is written as '5421312091514', how would 'STUDENT' be written in that code?",
+            "options": [
+                "192021451420",
+                "202119451420",
+                "192021451320",
+                "192021441420",
+                "192021451420"
+            ],
+            "correctAnswer": 4,
+            "explanation": "Each letter is represented by its position in the English alphabet (A=1, B=2, etc.)."
+        },
+        {
+            "text": "A is the son of B. C is the wife of B. D is the father of C. How is A related to D?",
+            "options": [
+                "Grandson",
+                "Son",
+                "Nephew",
+                "Brother",
+                "Cousin"
+            ],
+            "correctAnswer": 0,
+            "explanation": "D is the grandfather of A, making A the grandson of D."
+        }
+    ]
+}
