@@ -1,0 +1,48 @@
+{
+    "title": "Reasoning (Day-1)",
+    "description": "Practice reasoning questions for competitive exams",
+    "duration": 1800,
+    "multilingual": true,
+    "questions": [
+        {
+            "english": {
+                "text": "Study the following information carefully and answer the below questions.\n\nIn a certain code language\n'Mangrove Kapok Tibetan Aspen' means 'ad hm lg ym',\n'Sequoia Kapok Socotra Dragon' means 'pv hm gk mk',\n'Mangrove Sequoia Juniper Tree' means 'ad pv qr zt',\n'Juniper Tibetan Sagano Bamboo' means 'qr lg mx pz'",
+                "question": "What does 'ym' represent in a code language?",
+                "options": ["Aspen", "Kapok", "Mangrove", "Sequoia", "Juniper"],
+                "correctAnswer": 0,
+                "explanation": "By comparing the first and third statements, we can deduce that 'ym' stands for 'Aspen'."
+            },
+            "hindi": {
+                "text": "निम्नलिखित जानकारी का ध्यानपूर्वक अध्ययन करें और नीचे दिए गए प्रश्नों का उत्तर दें।\n\nएक निश्चित कोड भाषा में\n'मैंग्रोव कापोक तिब्बती एस्पेन' का अर्थ है 'ad hm lg ym',\n'सिकोइया कापोक सोकोट्रा ड्रैगन' का अर्थ है 'pv hm gk mk',\n'मैंग्रोव सिकोइया जुनिपर ट्री' का अर्थ है 'ad pv qr zt',\n'जुनिपर तिब्बती सगानो बांस' का अर्थ है 'qr lg mx pz'",
+                "question": "'ym' कोड भाषा में किसका प्रतिनिधित्व करता है?",
+                "options": ["एस्पेन", "कापोक", "मैंग्रोव", "सिकोइया", "जुनिपर"],
+                "correctAnswer": 0,
+                "explanation": "पहले और तीसरे कथन की तुलना करके, हम निष्कर्ष निकाल सकते हैं कि 'ym' 'एस्पेन' के लिए है।"
+            }
+        },
+        {
+            "text": "If in a certain code, in that code?",
+            "options": [
+                "192021451420",
+                "202119451420",
+                "192021451320",
+                "192021441420",
+                "192021451420"
+            ],
+            "correctAnswer": 4,
+            "explanation": "Each letter is represented by its position in the English alphabet (A=1, B=2, etc.)."
+        },
+        {
+            "text": "A is the son of B A related to D?",
+            "options": [
+                "Grandson",
+                "Son",
+                "Nephew",
+                "Brother",
+                "Cousin"
+            ],
+            "correctAnswer": 0,
+            "explanation": "D is the grandfather of A, making A the grandson of D."
+        }
+    ]
+}
