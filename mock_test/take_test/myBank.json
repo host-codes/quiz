@@ -1,0 +1,12 @@
+{
+    "nouns": ["knives", "swords", "blades"],
+    "adjectives": ["sharp", "pointed", "keen"],
+    "verbs": ["are", "is", "was"],
+    "adverbs": ["very", "extremely", "quite"],
+    "pronouns": ["you", "they", "we"],
+    "actions": ["coming", "going", "leaving"],
+    "time": ["today", "tomorrow", "yesterday"],
+    "states": ["stay", "remain", "wait"],
+    "descriptors": ["special", "unique", "particular"],
+    "days": ["day", "date", "time"]
+}
